@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "8zZYK6drTjXaC2PJ7ar+U2gZ2WiTkGYNL91XlJjM3go=",
+  "Source": "OutGetDotNet",
+  "BasePath": "_content/OutGetDotNet",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

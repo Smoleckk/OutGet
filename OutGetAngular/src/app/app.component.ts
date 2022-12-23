@@ -10,11 +10,24 @@ import { UserService } from './services/user.service';
 export class AppComponent {
   title = 'OutGetAngular';
   users:User[]=[];
+  userToEdit?:User;
+
 
   constructor(private userService:UserService){}
 
   ngOnInit():void{
-    this.users= this.userService.getUser();
-    console.log(this.users);
+    this.userService.getUser().subscribe((result:User[])=>(this.users=result));
+  }
+
+updateUserList(users:User[]){
+  this.users = users;
+}
+
+  initUser(){
+    this.userToEdit = new User();
+  }
+  
+  editUser(user:User){
+    this.userToEdit = user;
   }
 }

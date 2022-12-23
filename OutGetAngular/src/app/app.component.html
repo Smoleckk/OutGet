@@ -1,3 +1,5 @@
+<button (click)="initUser()">Create User</button>
+
 <table>
     <thead>
         <th>Name</th>
@@ -11,6 +13,10 @@
             <td>{{user.firstName}}</td>
             <td>{{user.lastName}}</td>
             <td>{{user.place}}</td>
+            <td><button (click)="editUser(user)">Edit</button></td>
         </tr>
     </tbody>
 </table>
+
+
+<app-edit-user [user]="userToEdit" (usersUpdated)="updateUserList($event)"></app-edit-user>
