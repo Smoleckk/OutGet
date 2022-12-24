@@ -9,10 +9,5 @@ namespace OutGetDotNet.Services.UserService
         Task<ServiceResponse<List<User>>> AddUser(User user);
         Task<ServiceResponse<List<User>>> UpdateUser(User user);
         Task<ServiceResponse<List<User>>> DeleteUser(int Id);
-
-
-
-
-
     }
 }

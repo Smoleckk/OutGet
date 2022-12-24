@@ -19,7 +19,10 @@ namespace OutGetDotNet.Services.UserService
 
             response.Success = true;
             response.Message = "Successfully get users";
-            response.Data = await _context.Users.ToListAsync();
+            response.Data = await _context.Users
+                .Include(x => x.ReceivedShipments)
+                .Include(x => x.SentShipments)
+                .ToListAsync();
 
             return response;
         }

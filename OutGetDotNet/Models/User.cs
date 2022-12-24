@@ -1,4 +1,7 @@
-﻿namespace OutGetDotNet.Models
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.RegularExpressions;
+
+namespace OutGetDotNet.Models
 {
     public class User
     {
@@ -8,5 +11,7 @@
         public string LastName { get; set; } = string.Empty;
         public string Place { get; set; } = string.Empty;
 
+        public ICollection<Shipment> SentShipments { get; set; } = new List<Shipment>();
+        public ICollection<Shipment> ReceivedShipments { get; set; } = new List<Shipment>();
     }
 }
