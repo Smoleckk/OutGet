@@ -40,9 +40,8 @@ namespace OutGetDotNet.Controllers
             }
             return Ok(response.Data);
         }
-
         [HttpPost]
-        public async Task<ActionResult<string>> AddShipment(AddShipmentDto shipmentDto)
+        public async Task<ActionResult<ShipmentDto>> AddShipment(ShipmentDto shipmentDto)
         {
             var response = await _shipmentService.AddShipment(shipmentDto);
             if (!response.Success)
@@ -51,8 +50,18 @@ namespace OutGetDotNet.Controllers
             }
             return Ok(response.Data);
         }
+        //[HttpPost]
+        //public async Task<ActionResult<string>> AddShipment(AddShipmentDto shipmentDto)
+        //{
+        //    var response = await _shipmentService.AddShipment(shipmentDto);
+        //    if (!response.Success)
+        //    {
+        //        return BadRequest(response);
+        //    }
+        //    return Ok(response.Data);
+        //}
         [HttpPut]
-        public async Task<ActionResult<string>> UpdateShipment(ShipmentDto shipmentDto)
+        public async Task<ActionResult<ShipmentDto>> UpdateShipment(ShipmentDto shipmentDto)
         {
             var response = await _shipmentService.UpdateShipment(shipmentDto);
             if (!response.Success)

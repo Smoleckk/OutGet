@@ -7,8 +7,8 @@ namespace OutGetDotNet.Services.ShipmentService
     {
         Task<ServiceResponse<List<ShipmentDto>>> GetShipments();
         Task<ServiceResponse<ShipmentDto>> GetShipment(int Id);
-        Task<ServiceResponse<string>> AddShipment(AddShipmentDto shipmentDto);
-        Task<ServiceResponse<string>> UpdateShipment(ShipmentDto shipment);
+        Task<ServiceResponse<ShipmentDto>> AddShipment(ShipmentDto shipmentDto);
+        Task<ServiceResponse<ShipmentDto>> UpdateShipment(ShipmentDto shipment);
         Task<ServiceResponse<string>> DeleteShipment(int Id);
     }
 }
