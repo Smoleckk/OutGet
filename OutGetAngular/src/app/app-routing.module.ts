@@ -4,28 +4,29 @@ import { LoginComponent } from './components/login/login.component';
 import { ShipmentAddComponent } from './components/shipment-add/shipment-add.component';
 import { ShipmentEditComponent } from './components/shipment-edit/shipment-edit.component';
 import { ShipmentsListComponent } from './components/shipments-list/shipments-list.component';
+import { AuthGuard } from './shared/auth.guard';
 
 const routes: Routes = [
   {
     path:'',
-    component: ShipmentsListComponent
+    component: ShipmentsListComponent,canActivate:[AuthGuard]
   },
   {
     path:'shipments',
-    component: ShipmentsListComponent
+    component: ShipmentsListComponent,canActivate:[AuthGuard]
   },
   {
     path:'shipments/add',
-    component: ShipmentAddComponent
+    component: ShipmentAddComponent,canActivate:[AuthGuard]
   },
   {
     path:'shipments/edit/:id',
-    component: ShipmentEditComponent
+    component: ShipmentEditComponent,canActivate:[AuthGuard]
   },
   {
     path:'login',
     component: LoginComponent
-  },
+  }
 ];
 
 @NgModule({

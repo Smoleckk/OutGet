@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Login } from 'src/app/models/login';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -12,16 +13,24 @@ export class LoginComponent implements OnInit {
     username: '',
     password: '',
   };
+  responseData:any;
 
-  constructor(private router:Router) { }
+  constructor(private router:Router,private authService:AuthService) { }
 
   ngOnInit(): void {
   }
   loginUser() {
-    // this.shipmentsService.addShipment(this.addShipmentRequest).subscribe({
-      // next: (shipment) => {
-        this.router.navigate(['shipments']);
-      // },
-    // });
+        this.authService.proceedLogin(this.login)
+        .subscribe({
+          next:(responseData)=>{
+            console.log(responseData);
+            localStorage.setItem('token',responseData)
+            this.router.navigate(['shipments']);
+          },
+          error:(respone)=>{
+            console.log(respone);
+          }
+        })
+
   }
 }
