@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using OutGetDotNet.Data;
+using OutGetDotNet.Services.AuthService;
 using OutGetDotNet.Services.ShipmentService;
 using OutGetDotNet.Services.UserService;
 using System.Text.Json.Serialization;
@@ -24,6 +25,8 @@ builder.Services.AddCors(options => options.AddPolicy(name: "OutGetDotNet",
     }));
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IShipmentService, ShipmentService>();
+builder.Services.AddScoped<IAuthService, AuthService>();
+
 
 
 builder.Services.AddControllers().AddJsonOptions(x =>

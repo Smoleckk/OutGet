@@ -11,6 +11,9 @@ namespace OutGetDotNet.Models
         public string LastName { get; set; } = string.Empty;
         public string Place { get; set; } = string.Empty;
 
+        public byte[] PasswordHash { get; set; }
+        public byte[] PasswordSalt { get; set; }
+
         public ICollection<Shipment> SentShipments { get; set; } = new List<Shipment>();
         public ICollection<Shipment> ReceivedShipments { get; set; } = new List<Shipment>();
     }

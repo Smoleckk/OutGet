@@ -9,6 +9,7 @@ import { ShipmentsListComponent } from './components/shipments-list/shipments-li
 import { ShipmentAddComponent } from './components/shipment-add/shipment-add.component';
 import { FormsModule } from '@angular/forms';
 import { ShipmentEditComponent } from './components/shipment-edit/shipment-edit.component';
+import { LoginComponent } from './components/login/login.component';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { ShipmentEditComponent } from './components/shipment-edit/shipment-edit.
     AppComponent,
     ShipmentsListComponent,
     ShipmentAddComponent,
-    ShipmentEditComponent
+    ShipmentEditComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
