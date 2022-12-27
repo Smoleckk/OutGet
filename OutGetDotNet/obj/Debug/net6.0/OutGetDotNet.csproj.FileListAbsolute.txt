@@ -71,3 +71,10 @@ C:\Paczkomat\OutGet\OutGetDotNet\bin\Debug\net6.0\runtimes\unix\lib\netcoreapp2.
 C:\Paczkomat\OutGet\OutGetDotNet\bin\Debug\net6.0\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
 C:\Paczkomat\OutGet\OutGetDotNet\bin\Debug\net6.0\AutoMapper.dll
 C:\Paczkomat\OutGet\OutGetDotNet\bin\Debug\net6.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+C:\Paczkomat\OutGet\OutGetDotNet\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Paczkomat\OutGet\OutGetDotNet\bin\Debug\net6.0\Microsoft.DotNet.PlatformAbstractions.dll
+C:\Paczkomat\OutGet\OutGetDotNet\bin\Debug\net6.0\Microsoft.Extensions.DependencyModel.dll
+C:\Paczkomat\OutGet\OutGetDotNet\bin\Debug\net6.0\Newtonsoft.Json.dll
+C:\Paczkomat\OutGet\OutGetDotNet\bin\Debug\net6.0\Scrutor.dll
+C:\Paczkomat\OutGet\OutGetDotNet\bin\Debug\net6.0\Swashbuckle.AspNetCore.Annotations.dll
+C:\Paczkomat\OutGet\OutGetDotNet\bin\Debug\net6.0\Swashbuckle.AspNetCore.Filters.dll

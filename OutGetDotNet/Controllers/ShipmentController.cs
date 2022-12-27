@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using OutGetDotNet.Models;
@@ -9,6 +10,7 @@ namespace OutGetDotNet.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(Roles = "User")]
     public class ShipmentController : ControllerBase
     {
         private readonly IShipmentService _shipmentService;
