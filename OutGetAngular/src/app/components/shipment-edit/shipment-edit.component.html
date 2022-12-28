@@ -3,21 +3,24 @@
     <div class="row">
         <div class="col-6">
     <form #form="ngForm" (ngSubmit)="updateShipment()">
-        <div class="mb-3">
-            <label for="id" class="form-label">Name</label>
-            <input type="text" class="form-control" id="id" 
+        <!-- <div class="mb-3">
+            <label for="id" class="form-label">Id</label>
+            <input  type="text" class="form-control" id="id" 
             name="id" [(ngModel)]="shipmentDetails.id">
-          </div>
+          </div> -->
         <div class="mb-3">
           <label for="name" class="form-label">Name</label>
-          <input type="text" class="form-control" id="name" 
+          <input  type="text" class="form-control" id="name" 
           name="name" [(ngModel)]="shipmentDetails.name">
         </div>
         <div class="mb-3">
-            <label for="state" class="form-label">State</label>
-            <input type="text" class="form-control" id="state" 
-            name="state" [(ngModel)]="shipmentDetails.state">
-          </div>
+          <label for="name" class="form-label">Status</label>
+          <select disabled id="state" name="state" class="form-select" [(ngModel)]="shipmentDetails.state">
+            <option value="Nadana">Nadana</option>
+            <option value="W drodze">W drodze</option>
+            <option value="Doreczona">Doreczona</option>
+          </select>
+        </div>
         <button type="submit" class="btn btn-primary">Submit</button>
       </form>
     </div>

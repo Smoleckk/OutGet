@@ -11,7 +11,7 @@ import { ShipmentsService } from 'src/app/services/shipments.service';
 export class ShipmentAddComponent implements OnInit {
   addShipmentRequest: Shipment = {
     name: '',
-    state: '',
+    state: 'Nadana',
   };
 
   constructor(private shipmentsService: ShipmentsService,private router:Router) {}
