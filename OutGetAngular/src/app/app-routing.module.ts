@@ -18,11 +18,11 @@ const routes: Routes = [
   },
   {
     path:'shipments/add',
-    component: ShipmentAddComponent,canActivate:[RoleGuard]
+    component: ShipmentAddComponent,canActivate:[AuthGuard]
   },
   {
     path:'shipments/edit/:id',
-    component: ShipmentEditComponent,canActivate:[AuthGuard]
+    component: ShipmentEditComponent,canActivate:[RoleGuard]
   },
   {
     path:'login',

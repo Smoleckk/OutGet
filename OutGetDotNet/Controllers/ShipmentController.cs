@@ -10,7 +10,7 @@ namespace OutGetDotNet.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize(Roles = "User")]
+    [Authorize(Roles = "User,Admin,Demo")]
     public class ShipmentController : ControllerBase
     {
         private readonly IShipmentService _shipmentService;

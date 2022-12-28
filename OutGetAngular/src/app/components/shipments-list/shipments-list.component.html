@@ -14,7 +14,7 @@
                 <td>{{shipment.id}}</td>
                 <td>{{shipment.name}}</td>
                 <td>{{shipment.state}}</td>
-                <td ><a *ngIf="shipment.state=='Nadana'" [routerLink]="['/shipments','edit',shipment.id]">Edit</a></td>
+                <td ><a *ngIf="shipment.state=='Nadana'|| displayadmin" [routerLink]="['/shipments','edit',shipment.id]">Edit</a></td>
                 <!-- <td><a [routerLink]="['/shipments','edit',shipment.id]">Edit</a></td> -->
             </tr>
         </tbody>

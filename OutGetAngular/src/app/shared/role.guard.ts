@@ -17,7 +17,7 @@ export class RoleGuard implements CanActivate {
   constructor(private authService:AuthService,private route:Router) {}
 
   canActivate() {
-    if(this.authService.HaveAccess())
+    if(this.authService.DisplayMenu())
     return true;
     else{
     this.route.navigate(['']);

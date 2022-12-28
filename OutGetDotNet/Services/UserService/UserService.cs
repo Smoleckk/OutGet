@@ -25,6 +25,15 @@ namespace OutGetDotNet.Services.UserService
             }
             return result;
         }
+        public string getMyRole()
+        {
+            var result = string.Empty;
+            if (_contextAccessor.HttpContext != null)
+            {
+                result = _contextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.Role);
+            }
+            return result;
+        }
         public async Task<ServiceResponse<List<User>>> GetUsers()
         {
             var response = new ServiceResponse<List<User>>();

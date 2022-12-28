@@ -29,7 +29,14 @@ namespace OutGetDotNet.Services.ShipmentService
             var response = new ServiceResponse<List<ShipmentDto>>();
             List<ShipmentDto> sdList = new();
             var name = _userService.getMyName();
+            var role = _userService.getMyRole();
             var r = await _context.Shipments.Where(u => u.Sender.Name == name).ToListAsync();
+            if (role == "Admin")
+            {
+
+                r = await _context.Shipments.ToListAsync();
+
+            }
             //var notes = await _context.Notes.Where(p => p.Public == true && p.Secure == false).ToListAsync();
             //.Where(u => u.Sender.Name == name)
             foreach (var s in r)

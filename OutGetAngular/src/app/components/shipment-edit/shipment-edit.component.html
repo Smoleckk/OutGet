@@ -13,9 +13,9 @@
           <input  type="text" class="form-control" id="name" 
           name="name" [(ngModel)]="shipmentDetails.name">
         </div>
-        <div class="mb-3">
+        <div *ngIf="displayadmin" class="mb-3">
           <label for="name" class="form-label">Status</label>
-          <select disabled id="state" name="state" class="form-select" [(ngModel)]="shipmentDetails.state">
+          <select  id="state" name="state" class="form-select" [(ngModel)]="shipmentDetails.state">
             <option value="Nadana">Nadana</option>
             <option value="W drodze">W drodze</option>
             <option value="Doreczona">Doreczona</option>

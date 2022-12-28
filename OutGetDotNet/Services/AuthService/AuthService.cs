@@ -74,7 +74,7 @@ namespace OutGetDotNet.Services.AuthService
             List<Claim> claims = new List<Claim>
             {
                 new Claim(ClaimTypes.Name, user.Name),
-                new Claim(ClaimTypes.Role, "User")
+                new Claim(ClaimTypes.Role, user.Name)
 
             };
             var key = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(

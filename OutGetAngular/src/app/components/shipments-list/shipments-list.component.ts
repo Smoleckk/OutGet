@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Shipment } from 'src/app/models/shipment';
+import { AuthService } from 'src/app/services/auth.service';
 import { ShipmentsService } from 'src/app/services/shipments.service';
 
 @Component({
@@ -9,8 +10,9 @@ import { ShipmentsService } from 'src/app/services/shipments.service';
 })
 export class ShipmentsListComponent implements OnInit {
   shipments:Shipment[]=[];
+  displayadmin=false;
 
-  constructor(private shipmentsService:ShipmentsService) { }
+  constructor(private shipmentsService:ShipmentsService, private authService:AuthService) { }
 
   ngOnInit(): void {
     this.shipmentsService.getAllShipments()
@@ -22,6 +24,7 @@ export class ShipmentsListComponent implements OnInit {
         console.log(respone);
       }
     })
+    this.displayadmin = this.authService.HaveAccess();
   }
 
 }
