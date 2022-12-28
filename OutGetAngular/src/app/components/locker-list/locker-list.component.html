@@ -1,0 +1,23 @@
+<div class="container my-5">
+    <h1 class="mb-3">Lockers</h1>
+    <table class="table" *ngIf="lockers">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>City</th>
+                <!-- <th> </th> -->
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let shipment of lockers">
+                <td>{{shipment.id}}</td>
+                <td>{{shipment.name}}</td>
+                <td>{{shipment.city}}</td>
+                <!-- <td ><a *ngIf="shipment.state=='Nadana'|| displayadmin" [routerLink]="['/shipments','edit',shipment.id]">Edit</a></td> -->
+                <!-- <td><a [routerLink]="['/shipments','edit',shipment.id]">Edit</a></td> -->
+            </tr>
+        </tbody>
+    </table>
+    <p *ngIf="!lockers || lockers.length<=0">No shipments found</p>
+</div>

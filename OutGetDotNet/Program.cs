@@ -4,6 +4,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using OutGetDotNet.Data;
 using OutGetDotNet.Services.AuthService;
+using OutGetDotNet.Services.LockerService;
 using OutGetDotNet.Services.ShipmentService;
 using OutGetDotNet.Services.UserService;
 using Swashbuckle.AspNetCore.Filters;
@@ -55,6 +56,8 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IShipmentService, ShipmentService>();
 builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddScoped<ILockerService, LockerService>();
+
 
 
 

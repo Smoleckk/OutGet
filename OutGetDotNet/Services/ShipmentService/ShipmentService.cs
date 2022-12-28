@@ -86,13 +86,17 @@ namespace OutGetDotNet.Services.ShipmentService
             var user = _context.Users.Where(u => u.Name == _userService.getMyName()).FirstOrDefault();
             var sender = await _context.Users.FindAsync(2);
             var receiver = await _context.Users.FindAsync(2);
+            var locker = await _context.Lockers.FindAsync(1);
+
 
             var newShipment = new Shipment
             {
                 Name = shipmentDto.Name,
                 State = shipmentDto.State,
                 Sender = user,
-                Receiver = user
+                Receiver = user,
+                FromLocker = locker,
+                ToLocker = locker
             };
             _context.Shipments.Add(newShipment);
             await _context.SaveChangesAsync();

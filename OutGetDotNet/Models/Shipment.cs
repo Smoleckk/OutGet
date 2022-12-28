@@ -11,5 +11,11 @@ namespace OutGetDotNet.Models
         public User Sender { get; set; }
         public int? ReceiverId { get; set; }
         public User Receiver { get; set; }
+
+        public int? FromLockerId { get; set; }
+        public Locker FromLocker { get; set; }
+
+        public int? ToLockerId { get; set; }
+        public Locker ToLocker { get; set; }
     }
 }

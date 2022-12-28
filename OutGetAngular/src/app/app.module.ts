@@ -11,6 +11,7 @@ import { FormsModule } from '@angular/forms';
 import { ShipmentEditComponent } from './components/shipment-edit/shipment-edit.component';
 import { LoginComponent } from './components/login/login.component';
 import { TokenInterceptorService } from './services/token-interceptor.service';
+import { LockerListComponent } from './components/locker-list/locker-list.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { TokenInterceptorService } from './services/token-interceptor.service';
     ShipmentsListComponent,
     ShipmentAddComponent,
     ShipmentEditComponent,
-    LoginComponent
+    LoginComponent,
+    LockerListComponent
   ],
   imports: [
     BrowserModule,

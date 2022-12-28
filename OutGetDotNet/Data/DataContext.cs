@@ -9,6 +9,8 @@ namespace OutGetDotNet.Data
         public DataContext(DbContextOptions<DataContext> options) : base(options) { }
         public DbSet<User> Users { get; set; }
         public DbSet<Shipment> Shipments { get; set; }
+        public DbSet<Locker> Lockers { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -23,6 +25,31 @@ namespace OutGetDotNet.Data
 .WithMany(x => x.ReceivedShipments)
 .HasForeignKey(x => x.ReceiverId)
 .OnDelete(DeleteBehavior.ClientSetNull);
+
+            modelBuilder.Entity<Shipment>()
+.HasOne(x => x.FromLocker)
+.WithMany(x => x.FromLockerDelivery)
+.HasForeignKey(x => x.FromLockerId)
+.OnDelete(DeleteBehavior.ClientSetNull);
+            modelBuilder.Entity<Shipment>()
+.HasOne(x => x.ToLocker)
+.WithMany(x => x.ToLockerDelivery)
+.HasForeignKey(x => x.ToLockerId)
+.OnDelete(DeleteBehavior.ClientSetNull);
+
+            //            modelBuilder.Entity<Shipment>()
+            //.HasOne(x => x.ToLocker)
+            //.WithMany(x => x.ToLockerDelivery)
+            //.HasForeignKey(x => x.ToLockerId)
+            //.OnDelete(DeleteBehavior.ClientSetNull);
+
+
+
+
+
+
+
+
         }
     }
 

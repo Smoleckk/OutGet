@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { LockerListComponent } from './components/locker-list/locker-list.component';
 import { LoginComponent } from './components/login/login.component';
 import { ShipmentAddComponent } from './components/shipment-add/shipment-add.component';
 import { ShipmentEditComponent } from './components/shipment-edit/shipment-edit.component';
@@ -23,6 +24,10 @@ const routes: Routes = [
   {
     path:'shipments/edit/:id',
     component: ShipmentEditComponent,canActivate:[RoleGuard]
+  },
+  {
+    path:'lockers',
+    component: LockerListComponent,canActivate:[AuthGuard]
   },
   {
     path:'login',

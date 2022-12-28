@@ -16,5 +16,8 @@ namespace OutGetDotNet.Models
 
         public ICollection<Shipment> SentShipments { get; set; } = new List<Shipment>();
         public ICollection<Shipment> ReceivedShipments { get; set; } = new List<Shipment>();
+
+
+
     }
 }
