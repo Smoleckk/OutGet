@@ -4,6 +4,7 @@ using OutGetDotNet.Data;
 using OutGetDotNet.Migrations;
 using OutGetDotNet.Models;
 using OutGetDotNet.ModelsDto;
+using OutGetDotNet.Services.UserService;
 using System.Reflection;
 using Shipment = OutGetDotNet.Models.Shipment;
 
@@ -14,18 +15,23 @@ namespace OutGetDotNet.Services.ShipmentService
 
         private readonly DataContext _context;
         private readonly IMapper _mapper;
+        private readonly IUserService _userService;
 
-        public ShipmentService(DataContext context, IMapper mapper)
+        public ShipmentService(DataContext context, IMapper mapper, IUserService userService)
         {
             _context = context;
             _mapper = mapper;
+            _userService = userService;
         }
 
         public async Task<ServiceResponse<List<ShipmentDto>>> GetShipments()
         {
             var response = new ServiceResponse<List<ShipmentDto>>();
             List<ShipmentDto> sdList = new();
-            var r = await _context.Shipments.ToListAsync();
+            var name = _userService.getMyName();
+            var r = await _context.Shipments.Where(u => u.Sender.Name == name).ToListAsync();
+            //var notes = await _context.Notes.Where(p => p.Public == true && p.Secure == false).ToListAsync();
+            //.Where(u => u.Sender.Name == name)
             foreach (var s in r)
             {
                 ShipmentDto sd = new ShipmentDto
@@ -70,6 +76,7 @@ namespace OutGetDotNet.Services.ShipmentService
         public async Task<ServiceResponse<ShipmentDto>> AddShipment(ShipmentDto shipmentDto)
         {
             var response = new ServiceResponse<ShipmentDto>();
+            var user = _context.Users.Where(u => u.Name == _userService.getMyName()).FirstOrDefault();
             var sender = await _context.Users.FindAsync(2);
             var receiver = await _context.Users.FindAsync(2);
 
@@ -77,8 +84,8 @@ namespace OutGetDotNet.Services.ShipmentService
             {
                 Name = shipmentDto.Name,
                 State = shipmentDto.State,
-                Sender = sender,
-                Receiver = receiver
+                Sender = user,
+                Receiver = user
             };
             _context.Shipments.Add(newShipment);
             await _context.SaveChangesAsync();
