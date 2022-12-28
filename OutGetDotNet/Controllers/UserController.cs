@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using OutGetDotNet.Data;
@@ -17,7 +18,11 @@ namespace OutGetDotNet.Controllers
         {
             _userService = userService;
         }
-
+        [HttpGet("GetMe"), Authorize]
+        public ActionResult<string> GetMe()
+        {
+            return Ok(_userService.getMyName());
+        }
         [HttpGet]
         public async Task<ActionResult<List<User>>> GetUsers()
         {

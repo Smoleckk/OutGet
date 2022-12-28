@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using OutGetDotNet.Models;
@@ -21,6 +22,7 @@ namespace OutGetDotNet.Controllers
         {
             _authService = authService;
         }
+
 
         [HttpPost("register")]
         public async Task<ActionResult<User>> Register(UserDto request)

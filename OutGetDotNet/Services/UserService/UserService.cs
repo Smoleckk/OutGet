@@ -1,18 +1,30 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using OutGetDotNet.Data;
 using OutGetDotNet.Models;
+using System.Security.Claims;
 
 namespace OutGetDotNet.Services.UserService
 {
     public class UserService : IUserService
     {
         private readonly DataContext _context;
+        private readonly IHttpContextAccessor _contextAccessor;
 
-        public UserService(DataContext context)
+        public UserService(DataContext context, IHttpContextAccessor contextAccessor)
         {
             _context = context;
+            _contextAccessor = contextAccessor;
         }
 
+        public string getMyName()
+        {
+            var result = string.Empty;
+            if (_contextAccessor.HttpContext != null)
+            {
+                result = _contextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.Name);
+            }
+            return result;
+        }
         public async Task<ServiceResponse<List<User>>> GetUsers()
         {
             var response = new ServiceResponse<List<User>>();
@@ -84,5 +96,7 @@ namespace OutGetDotNet.Services.UserService
 
             return response;
         }
+
+
     }
 }

@@ -18,4 +18,21 @@ export class AuthService {
   IsLoggedIn() {
     return localStorage.getItem('token')!=null;
   }
+  GetToken(){
+    return localStorage.getItem('token') ||'';
+  }
+
+  HaveAccess(){
+    var loggintoken = localStorage.getItem('token') ||'';
+    var _extractedtoken = loggintoken.split('.')[1];
+    var _atodata = atob(_extractedtoken);
+    var _finaldata = JSON.parse(_atodata);
+    var role = _finaldata[Object.keys(_finaldata)[1]]
+    console.log(_finaldata[Object.keys(_finaldata)[1]]);
+    if(role=='User'){
+      return true;
+    }
+    alert('You not having access');
+    return false;
+  }
 }

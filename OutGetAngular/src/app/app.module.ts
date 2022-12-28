@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -10,6 +10,7 @@ import { ShipmentAddComponent } from './components/shipment-add/shipment-add.com
 import { FormsModule } from '@angular/forms';
 import { ShipmentEditComponent } from './components/shipment-edit/shipment-edit.component';
 import { LoginComponent } from './components/login/login.component';
+import { TokenInterceptorService } from './services/token-interceptor.service';
 
 
 @NgModule({
@@ -27,7 +28,7 @@ import { LoginComponent } from './components/login/login.component';
     NgbModule,
     FormsModule
   ],
-  providers: [],
+  providers: [{provide:HTTP_INTERCEPTORS,useClass:TokenInterceptorService,multi:true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

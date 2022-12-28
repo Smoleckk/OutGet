@@ -5,6 +5,7 @@ import { ShipmentAddComponent } from './components/shipment-add/shipment-add.com
 import { ShipmentEditComponent } from './components/shipment-edit/shipment-edit.component';
 import { ShipmentsListComponent } from './components/shipments-list/shipments-list.component';
 import { AuthGuard } from './shared/auth.guard';
+import { RoleGuard } from './shared/role.guard';
 
 const routes: Routes = [
   {
@@ -17,7 +18,7 @@ const routes: Routes = [
   },
   {
     path:'shipments/add',
-    component: ShipmentAddComponent,canActivate:[AuthGuard]
+    component: ShipmentAddComponent,canActivate:[RoleGuard]
   },
   {
     path:'shipments/edit/:id',
