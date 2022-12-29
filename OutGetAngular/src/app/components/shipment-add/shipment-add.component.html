@@ -1,24 +1,60 @@
 <div class="container my-5">
-    <h1 class="mb-3">Add New Employee</h1>
-    <div class="row">
-        <div class="col-6">
-    <form #form="ngForm" (ngSubmit)="addShipment()">
+  <h1 class="mb-3">Add New Shiment</h1>
+  <div class="row">
+    <div class="col-6">
+      <form #form="ngForm" (ngSubmit)="addShipment()">
         <div class="mb-3">
           <label for="name" class="form-label">Name</label>
-          <input type="text" class="form-control" id="name" 
-          name="name" [(ngModel)]="addShipmentRequest.name">
+          <input
+            type="text"
+            class="form-control"
+            id="name"
+            name="name"
+            [(ngModel)]="addShipmentRequest.name"
+          />
+        </div>
+        <div class="mb-3">
+          <label for="fromLockerName" class="form-label">From locker</label>
+          <select
+            id="fromLockerName"
+            name="fromLockerName"
+            class="form-select"
+            [(ngModel)]="addShipmentRequest.fromLockerName"
+          >
+            <option value="{{ locker.name }}" *ngFor="let locker of lockers">
+              {{ locker.name }}
+            </option>
+          </select>
+        </div>
+        <div class="mb-3">
+          <label for="toLockerName" class="form-label">To locker</label>
+          <select
+            id="toLockerName"
+            name="toLockerName"
+            class="form-select"
+            [(ngModel)]="addShipmentRequest.toLockerName"
+          >
+            <option value="{{ locker.name }}" *ngFor="let locker of lockers">
+              {{ locker.name }}
+            </option>
+          </select>
+        </div>
+        <div class="mb-3">
+          <label for="receiver" class="form-label">Receiver</label>
+          <select
+            id="receiver"
+            name="receiver"
+            class="form-select"
+            [(ngModel)]="addShipmentRequest.receiver"
+          >
+            <option value="{{ user.name }}" *ngFor="let user of usersname">
+              {{ user.name }}
+            </option>
+          </select>
         </div>
 
-        <!-- <div class="mb-3">
-          <label for="name" class="form-label">Status</label>
-          <select id="state" name="state" class="form-select" [(ngModel)]="addShipmentRequest.state">
-            <option value="Nadana">Nadana</option>
-            <option value="W drodze">W drodze</option>
-            <option value="Doreczona">Doreczona</option>
-          </select>
-        </div> -->
         <button type="submit" class="btn btn-primary">Submit</button>
       </form>
     </div>
-</div>
+  </div>
 </div>

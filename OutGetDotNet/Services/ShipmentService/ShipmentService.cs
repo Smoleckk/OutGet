@@ -30,23 +30,33 @@ namespace OutGetDotNet.Services.ShipmentService
             List<ShipmentDto> sdList = new();
             var name = _userService.getMyName();
             var role = _userService.getMyRole();
-            var r = await _context.Shipments.Where(u => u.Sender.Name == name).ToListAsync();
+            var r = await _context.Shipments.Include(x => x.FromLocker).Include(x => x.ToLocker).Include(x => x.Receiver).Where(u => u.Sender.Name == name).ToListAsync();
             if (role == "Admin")
             {
 
-                r = await _context.Shipments.ToListAsync();
+                r = await _context.Shipments.Include(x => x.FromLocker).Include(x => x.ToLocker).Include(x => x.Receiver).ToListAsync();
 
             }
             //var notes = await _context.Notes.Where(p => p.Public == true && p.Secure == false).ToListAsync();
             //.Where(u => u.Sender.Name == name)
+
             foreach (var s in r)
             {
+                string receiver = "";
+
+                if (s.Receiver != null)
+                {
+                    receiver = s.Receiver.Name;
+
+                }
                 ShipmentDto sd = new ShipmentDto
                 {
                     Id = s.Id,
                     Name = s.Name,
                     State = s.State,
-
+                    Receiver = receiver,
+                    FromLockerName = s.FromLocker.Name,
+                    ToLockerName = s.ToLocker.Name
                 };
                 sdList.Add(sd);
             }
@@ -61,7 +71,7 @@ namespace OutGetDotNet.Services.ShipmentService
         {
             var response = new ServiceResponse<ShipmentDto>();
 
-            var s = await _context.Shipments.FirstOrDefaultAsync(i => i.Id == Id);
+            var s = await _context.Shipments.Include(x => x.FromLocker).Include(x => x.ToLocker).Include(x => x.Receiver).FirstOrDefaultAsync(i => i.Id == Id);
             if (s == null)
             {
                 response.Success = false;
@@ -69,11 +79,20 @@ namespace OutGetDotNet.Services.ShipmentService
                 return response;
 
             }
+            string receiver = "";
+            if (s.Receiver != null)
+            {
+                receiver = s.Receiver.Name;
+
+            }
             ShipmentDto sd = new ShipmentDto
             {
                 Id = s.Id,
                 Name = s.Name,
                 State = s.State,
+                Receiver = receiver,
+                FromLockerName = s.FromLocker.Name,
+                ToLockerName = s.ToLocker.Name
             };
             response.Message = "Shipment successfully get";
             response.Data = sd;
@@ -84,19 +103,21 @@ namespace OutGetDotNet.Services.ShipmentService
         {
             var response = new ServiceResponse<ShipmentDto>();
             var user = _context.Users.Where(u => u.Name == _userService.getMyName()).FirstOrDefault();
-            var sender = await _context.Users.FindAsync(2);
-            var receiver = await _context.Users.FindAsync(2);
-            var locker = await _context.Lockers.FindAsync(1);
+            //var sender = await _context.Users.FindAsync(2);
+            var receiver = _context.Users.Where(u => u.Name == shipmentDto.Receiver).FirstOrDefault();
+            var lockerFrom = _context.Lockers.Where(u => u.Name == shipmentDto.FromLockerName).FirstOrDefault();
+            var lockerTo = _context.Lockers.Where(u => u.Name == shipmentDto.ToLockerName).FirstOrDefault();
 
+            _userService.getMyName();
 
             var newShipment = new Shipment
             {
                 Name = shipmentDto.Name,
                 State = shipmentDto.State,
                 Sender = user,
-                Receiver = user,
-                FromLocker = locker,
-                ToLocker = locker
+                Receiver = receiver,
+                FromLocker = lockerFrom,
+                ToLocker = lockerTo
             };
             _context.Shipments.Add(newShipment);
             await _context.SaveChangesAsync();

@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using OutGetDotNet.Data;
 using OutGetDotNet.Models;
+using OutGetDotNet.ModelsDto;
 using System.Security.Claims;
 
 namespace OutGetDotNet.Services.UserService
@@ -45,6 +46,31 @@ namespace OutGetDotNet.Services.UserService
                 .Include(x => x.SentShipments)
                 .ToListAsync();
 
+            return response;
+        }
+        public async Task<ServiceResponse<List<UserName>>> GetUsersName()
+        {
+            var response = new ServiceResponse<List<UserName>>();
+
+
+            var users = await _context.Users
+                .Include(x => x.ReceivedShipments)
+                .Include(x => x.SentShipments)
+                .ToListAsync();
+
+            List<UserName> un = new();
+            foreach (var user in users)
+            {
+                UserName u = new UserName
+                {
+                    Name = user.Name
+                };
+                un.Add(u);
+            }
+
+            response.Success = true;
+            response.Message = "Successfully get users";
+            response.Data = un;
             return response;
         }
         public async Task<ServiceResponse<User>> GetUser(int Id)

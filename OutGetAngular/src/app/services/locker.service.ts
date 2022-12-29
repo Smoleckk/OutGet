@@ -16,4 +16,7 @@ export class LockerService {
   getAllLocker():Observable<Locker[]>{
     return this.http.get<Locker[]>(this.baseApiUrl+'/Locker');
   }
+  addLocker(addLockerRequest:Locker): Observable<Locker>{
+    return this.http.post<Locker>(this.baseApiUrl+'/Locker',addLockerRequest )
+   }
 }

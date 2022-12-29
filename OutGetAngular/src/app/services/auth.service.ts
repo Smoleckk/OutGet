@@ -47,7 +47,8 @@ export class AuthService {
     var _finaldata = JSON.parse(_atodata);
     var role = _finaldata[Object.keys(_finaldata)[1]];
     console.log(_finaldata[Object.keys(_finaldata)[1]]);
-    if (role == 'User' || role == 'Admin' || role == 'Demo') {
+    // if (role == 'User' || role == 'Admin' || role == 'Demo') {
+    if (role == 'Admin') {
       return true;
     }
     return false;

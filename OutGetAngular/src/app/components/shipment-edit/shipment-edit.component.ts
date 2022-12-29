@@ -13,6 +13,9 @@ export class ShipmentEditComponent implements OnInit {
   shipmentDetails: Shipment = {
     name: '',
     state: '',
+    receiver:'',
+    fromLockerName:'',
+    toLockerName:''
   };
   displayadmin=false;
 

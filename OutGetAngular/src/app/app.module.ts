@@ -12,6 +12,7 @@ import { ShipmentEditComponent } from './components/shipment-edit/shipment-edit.
 import { LoginComponent } from './components/login/login.component';
 import { TokenInterceptorService } from './services/token-interceptor.service';
 import { LockerListComponent } from './components/locker-list/locker-list.component';
+import { LockerAddComponent } from './components/locker-add/locker-add.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { LockerListComponent } from './components/locker-list/locker-list.compon
     ShipmentAddComponent,
     ShipmentEditComponent,
     LoginComponent,
-    LockerListComponent
+    LockerListComponent,
+    LockerAddComponent
   ],
   imports: [
     BrowserModule,

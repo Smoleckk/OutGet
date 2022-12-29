@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using OutGetDotNet.Data;
 using OutGetDotNet.Models;
+using OutGetDotNet.ModelsDto;
 using OutGetDotNet.Services.UserService;
 
 namespace OutGetDotNet.Controllers
@@ -32,6 +33,16 @@ namespace OutGetDotNet.Controllers
                 return BadRequest(response.Data);
             }
             return Ok(response.Data);
+        }
+        [HttpGet("users-name")]
+        public async Task<ActionResult<List<UserName>>> GetUsersName()
+        {
+            var response = await _userService.GetUsersName();
+            if (!response.Success)
+            {
+                return BadRequest(response.Data);
+            }
+            return Ok(response.Data.ToArray());
         }
         [HttpPost]
         public async Task<ActionResult<List<User>>> AddUser(User user)

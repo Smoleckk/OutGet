@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Shipment } from '../models/shipment';
+import { Usersname } from '../models/username';
 
 @Injectable({
   providedIn: 'root'
@@ -25,5 +26,8 @@ getShipment(id:string): Observable<Shipment>{
 }
 updateShipment(updateShipmentRequest:Shipment): Observable<Shipment>{
   return this.http.put<Shipment>(this.baseApiUrl+'/Shipment/',updateShipmentRequest );
+}
+getUsers():Observable<Usersname[]>{
+  return this.http.get<Usersname[]>('https://localhost:7120/api/User/users-name');
 }
 }

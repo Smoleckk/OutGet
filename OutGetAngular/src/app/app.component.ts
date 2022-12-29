@@ -9,6 +9,7 @@ import { AuthService } from './services/auth.service';
 })
 export class AppComponent implements DoCheck {
   displaymenu = false;
+  displayadmin=false;
 
   displayshipments = false;
   currentrole: any;
@@ -20,6 +21,8 @@ export class AppComponent implements DoCheck {
       this.authService.DisplayMenu();
     });
     this.displayAccess = this.authService.DisplayMenu();
+    this.displayadmin = this.authService.HaveAccess();
+
   }
 
   ngDoCheck(): void {

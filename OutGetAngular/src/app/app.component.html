@@ -22,19 +22,26 @@
             >Shipments</a
           >
         </li>
-        <li class="nav-item">
+        <li *ngIf="displayadmin" class="nav-item">
           <a class="nav-link active" aria-current="page" routerLink="lockers"
             >Lockers</a
           >
         </li>
-        <li class="nav-item">
+        <li *ngIf="!displayadmin" class="nav-item">
           <a
             class="nav-link active"
             aria-current="page"
             routerLink="shipments/add"
             >New shipment</a
           >
-          <!-- *ngIf="displayAccess" -->
+        </li>
+        <li *ngIf="displayadmin" class="nav-item">
+          <a
+            class="nav-link active"
+            aria-current="page"
+            routerLink="lockers/add"
+            >New locker</a
+          >
         </li>
         <li class="nav-item">
           <button (click)="logout()">Logout</button>
