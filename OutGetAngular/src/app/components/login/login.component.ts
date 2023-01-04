@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
             localStorage.setItem('token',responseData)
             this.authService.updatemenu.next();
             this.router.navigate(['shipments']).then(() => {
-              window.location.reload();
+              // window.location.reload();
             });;
           },
           error:(respone)=>{

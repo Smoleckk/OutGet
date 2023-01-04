@@ -1,86 +1,3 @@
-#version: '3.4'
-
-#services:
-#  outgetdotnet:
-#    image: ${DOCKER_REGISTRY-}outgetdotnet
-#    build:
-#      context: .
-#      dockerfile: Dockerfile
-#  sql:
-#    image: "mcr.microsoft.com/mssql/server:2022-latest"
-#    container_name: sql_server2022
-#    ports: # not actually needed, because the two services are on the same network
-#      - "1433:1433" 
-#    environment:
-#      - ACCEPT_EULA=y
-#      - SA_PASSWORD=A&VeryComplex123Password
-
-
-#version: "3.9"  # optional since v1.27.0
-#services:
-#  outgetdotnet:
-#    build: . # build the Docker image 
-#    container_name: outgetdotnet
-#    ports:
-#      - "5000:80"
-#  sqldb:
-#    image: mcr.microsoft.com/mssql/server:2019-latest
-#    environment:
-#      - SA_PASSWORD=2Secure*Password2
-#      - ACCEPT_EULA=Y
-#    ports:
-#      - "1433:1433"
-
-#version: "3.9"  # optional since v1.27.0
-#services:
-#  outgetdotnet:
-#    build: . # build the Docker image 
-#    container_name: outgetdotnet
-#    ports:
-#      - "5000:80"
-#  sql:
-#    image: "mcr.microsoft.com/mssql/server:2022-latest"
-#    environment:
-#      ACCEPT_EULA: "Y"
-#      SA_PASSWORD: "A&VeryComplex123Password"
-#      MSSQL_PID: Express
-#    ports:
-#      - "1433:1433"
-
-
-
-
-
-
-
-
-#version: "3.9"  # optional since v1.27.0
-#networks:
-#    demoblazorapp:
-#services:
-#  demoappdb:
-#    image: "mcr.microsoft.com/mssql/server:2022-latest"
-#    environment:
-#      ACCEPT_EULA: "Y"
-#      MSSQL_SA_PASSWORD: "passwored@12345#"
-#    ports:
-#      - "8002:1433"
-#    networks:
-#        - demoblazorapp
-#  outgetdotnet:
-#    build: . # build the Docker image 
-#    container_name: outgetdotnet
-#    ports:
-#      - "8001:80"
-#    depends_on:
-#        - demoappdb
-#    environment:
-#        - DB_HOST=demoappdb
-#        - DB_NAME=DemoBlazorApp
-#        - DB_SA_PASSWORD=passwored@12345#
-#    networks:
-#        - demoblazorapp
-
 version: "3"
 
 networks:
@@ -90,7 +7,7 @@ services:
     outgetdotnet:
         build: .
         ports:
-            - "8000:80"
+            - "5000:443"
         depends_on:
             - sql
         command: ["dotnet", "ef", "database update"]
@@ -103,3 +20,16 @@ services:
             ACCEPT_EULA: "Y"
         networks:
             - paczkomat
+    server:
+        #image: outgetangular
+        build:
+            context: .././OutGetAngular
+            dockerfile: Dockerfile
+        ports:
+            - "3334:80"
+        tty: true
+        expose:
+            - "80" 
+        stdin_open: true
+        environment:
+            - MODE=dev

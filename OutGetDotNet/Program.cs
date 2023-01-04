@@ -32,9 +32,6 @@ builder.Services.AddSwaggerGen(options =>
     options.OperationFilter<SecurityRequirementsOperationFilter>();
 });
 builder.Services.AddAutoMapper(typeof(Program).Assembly);
-//var connection = @"Server=sql;Database=master;User=sa;Password=Your_password123;";
-//builder.Services.AddDbContext<DataContext>(
-//    options => options.UseSqlServer(connection));
 
 builder.Services.AddDbContext<DataContext>(options =>
 {
@@ -43,7 +40,9 @@ builder.Services.AddDbContext<DataContext>(options =>
 builder.Services.AddCors(options => options.AddPolicy(name: "OutGetDotNet",
     policy =>
     {
+        //policy.WithOrigins("http://localhost:3334").AllowAnyMethod().AllowAnyHeader();
         policy.WithOrigins("http://localhost:4200").AllowAnyMethod().AllowAnyHeader();
+
     }));
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>

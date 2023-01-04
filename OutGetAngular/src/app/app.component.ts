@@ -28,8 +28,12 @@ export class AppComponent implements DoCheck {
   ngDoCheck(): void {
     if (this.route.url == '/login') {
       this.displaymenu = false;
+    this.displayadmin = this.authService.HaveAccess();
+
     } else {
       this.displaymenu = true;
+    this.displayadmin = this.authService.HaveAccess();
+
     }
   }
   logout() {

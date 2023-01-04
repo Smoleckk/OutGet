@@ -28,6 +28,6 @@ updateShipment(updateShipmentRequest:Shipment): Observable<Shipment>{
   return this.http.put<Shipment>(this.baseApiUrl+'/Shipment/',updateShipmentRequest );
 }
 getUsers():Observable<Usersname[]>{
-  return this.http.get<Usersname[]>('https://localhost:7120/api/User/users-name');
+  return this.http.get<Usersname[]>(this.baseApiUrl +'/User/users-name');
 }
 }

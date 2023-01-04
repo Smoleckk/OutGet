@@ -53,7 +53,7 @@ namespace OutGetDotNet.Services.AuthService
             if (dbUser == null)
             {
                 response.Success = false;
-                response.Message = "Update fail, User not found";
+                response.Message = "Login fail, User not found" + request.Username;
                 return response;
             }
             if (!VerifyPasswordHash(request.Password, dbUser.PasswordHash, dbUser.PasswordSalt))

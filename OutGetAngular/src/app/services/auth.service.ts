@@ -30,26 +30,30 @@ export class AuthService {
 
   HaveAccess() {
     var loggintoken = localStorage.getItem('token') || '';
-    var _extractedtoken = loggintoken.split('.')[1];
-    var _atodata = atob(_extractedtoken);
-    var _finaldata = JSON.parse(_atodata);
-    var role = _finaldata[Object.keys(_finaldata)[1]];
-    console.log(_finaldata[Object.keys(_finaldata)[1]]);
-    if (role == 'Admin') {
-      return true;
+    if(loggintoken!=''){
+      var _extractedtoken = loggintoken.split('.')[1];
+      var _atodata = atob(_extractedtoken);
+      var _finaldata = JSON.parse(_atodata);
+      var role = _finaldata[Object.keys(_finaldata)[1]];
+      console.log(_finaldata[Object.keys(_finaldata)[1]]);
+      if (role == 'Admin') {
+        return true;
+      }
     }
     return false;
   }
   DisplayMenu() {
     var loggintoken = localStorage.getItem('token') || '';
-    var _extractedtoken = loggintoken.split('.')[1];
-    var _atodata = atob(_extractedtoken);
-    var _finaldata = JSON.parse(_atodata);
-    var role = _finaldata[Object.keys(_finaldata)[1]];
-    console.log(_finaldata[Object.keys(_finaldata)[1]]);
-    // if (role == 'User' || role == 'Admin' || role == 'Demo') {
-    if (role == 'Admin') {
-      return true;
+    if(loggintoken!=''){
+      var _extractedtoken = loggintoken.split('.')[1];
+      var _atodata = atob(_extractedtoken);
+      var _finaldata = JSON.parse(_atodata);
+      var role = _finaldata[Object.keys(_finaldata)[1]];
+      console.log(_finaldata[Object.keys(_finaldata)[1]]);
+      // if (role == 'User' || role == 'Admin' || role == 'Demo') {
+      if (role == 'Admin') {
+        return true;
+      }
     }
     return false;
   }
