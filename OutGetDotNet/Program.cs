@@ -40,8 +40,8 @@ builder.Services.AddDbContext<DataContext>(options =>
 builder.Services.AddCors(options => options.AddPolicy(name: "OutGetDotNet",
     policy =>
     {
-        //policy.WithOrigins("http://localhost:3334").AllowAnyMethod().AllowAnyHeader();
-        policy.WithOrigins("http://localhost:4200").AllowAnyMethod().AllowAnyHeader();
+        policy.WithOrigins("http://localhost:3334").AllowAnyMethod().AllowAnyHeader();
+        //policy.WithOrigins("http://localhost:4200").AllowAnyMethod().AllowAnyHeader();
 
     }));
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
